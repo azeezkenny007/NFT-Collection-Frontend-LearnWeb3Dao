@@ -113,6 +113,35 @@ const CrytoDev = ({}: Props) => {
     }
   };
 
+  const  startPreSale = async()=>{
+      try{
+        const nftContract = await getSignerConnectedContract()
+        const tx = await nftContract.startPresale()
+        setLoading(true)
+        await tx.wait()
+        setLoading(false)
+        await checkIfPresaleStarted();
+      }catch(e:unknown){
+        console.log(e)
+      }
+  }
+
+ 
+  const checkIfPresaleStarted =async()=>{
+   try{
+       const nftContract = await getProviderConnectedContract()
+       const _presaleStarted = await nftContract.presaleStarted()
+       if(!_presaleStarted){
+        await getOwner()
+       }
+       setPresaleStarted(_presaleStarted)
+       return _presaleStarted
+   }
+   catch(e:unknown){
+     console.log(e)
+   }
+  }
+
   return <div>helfahhh</div>;
 };
 
