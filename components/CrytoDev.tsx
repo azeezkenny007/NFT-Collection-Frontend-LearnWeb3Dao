@@ -55,6 +55,15 @@ const CrytoDev = ({}: Props) => {
        return signerConnectedContract 
   }
 
+  const getProviderConnectedContract = async():Promise<Contract>=>{
+     const provider = await getSignerOrProvider(false)
+     const providerConnectedAccount = new Contract(crytoDevGoerliAddress,abi,provider)
+     return providerConnectedAccount
+  }
+
+
+
+
 
   const presaleMint =async () => {
        
