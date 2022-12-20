@@ -6,6 +6,13 @@ import styles from "../styles/Home.module.css"
 
 type Props = {}
 
+type alertType={
+  message? : string
+}
+
+type needSigner = boolean
+
+
 const CrytoDev = ({}: Props) => {
   // walletConnected keep track of whether the user's wallet is connected or not
   const [walletConnected, setWalletConnected] = useState<boolean>(false);
@@ -20,10 +27,35 @@ const CrytoDev = ({}: Props) => {
   // tokenIdsMinted keeps track of the number of tokenIds that have been minted
   const [tokenIdsMinted, setTokenIdsMinted] = useState<string>("0");
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
-  const web3ModalRef = useRef();
+  const web3ModalRef = useRef<any>();
+
+
+  const getSignerOrProvider = async(needSigner:needSigner =false)=>{
+     const provider = await web3ModalRef.current.connect()
+     const web3Provider = new providers.Web3Provider(provider)
+     const {chainId} = await web3Provider.getNetwork()
+
+     if(chainId !=5 || 80001){
+         alert("Please change network to goerli or polygon")
+         throw new Error("Please change network to goerli or polygon")
+     }
+
+     if(needSigner){
+        const signer = await web3Provider.getSigner()
+        return signer
+     }
+     return web3Provider
+  }
+
+
+  const presaleMint =async () => {
+       
+  }
+
+
   return (
     <div>
-        hello my people
+        helfahhh
     </div>
   )
 }
