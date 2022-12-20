@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Nft collection Dapp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
