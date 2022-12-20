@@ -3,6 +3,8 @@ import {providers,utils,Contract} from "ethers"
 import { useEffect,useState,useRef } from 'react'
 import web3Modal from "web3modal"
 import styles from "../styles/Home.module.css"
+import {crytoDevGoerliAddress,crytoDevPolygonAddress} from "../constants"
+import {abi} from "../constants/contractmetadata.json"
 
 type Props = {}
 
@@ -45,6 +47,12 @@ const CrytoDev = ({}: Props) => {
         return signer
      }
      return web3Provider
+  }
+
+  const getSignerConnectedContract = async():Promise<Contract> =>{
+       const signer = await getSignerOrProvider(true)
+       const signerConnectedContract = new Contract(crytoDevGoerliAddress,abi,signer)
+       return signerConnectedContract 
   }
 
 
