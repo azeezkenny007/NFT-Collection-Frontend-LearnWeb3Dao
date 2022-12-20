@@ -1,5 +1,5 @@
 import React from "react";
-import { providers, utils, Contract } from "ethers";
+import { providers, utils, Contract, Signer, ethers } from "ethers";
 import { useEffect, useState, useRef } from "react";
 import web3Modal from "web3modal";
 import styles from "../styles/Home.module.css";
@@ -9,10 +9,10 @@ import { abi } from "../constants/contractmetadata.json";
 type Props = {};
 
 type alertType = {
-  message?: string;
+  number?: string;
 };
 
-type needSigner = boolean;
+type needSigner = true | false;
 
 const CrytoDev = ({}: Props) => {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -30,7 +30,20 @@ const CrytoDev = ({}: Props) => {
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef<any>();
 
-  const getSignerOrProvider = async (needSigner: needSigner = false) => {
+  const getProvider=async():Promise<providers.Web3Provider>=>{
+   const provider = await web3ModalRef.current.connect();
+   const web3Provider = new providers.Web3Provider(provider);
+   const { chainId } = await web3Provider.getNetwork();
+
+   if (chainId != 5 || 80001) {
+     alert("Please change network to goerli or polygon");
+     throw new Error("Please change network to goerli or polygon");
+   }
+   
+   return web3Provider
+  }
+
+  const getSigner = async ():Promise<providers.JsonRpcSigner> =>  {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
@@ -40,15 +53,13 @@ const CrytoDev = ({}: Props) => {
       throw new Error("Please change network to goerli or polygon");
     }
 
-    if (needSigner) {
-      const signer = await web3Provider.getSigner();
+      const signer = web3Provider.getSigner();
       return signer;
-    }
-    return web3Provider;
+   
   };
 
   const getSignerConnectedContract = async (): Promise<Contract> => {
-    const signer = await getSignerOrProvider(true);
+    const signer = await getSigner();
     const signerConnectedContract = new Contract(
       crytoDevGoerliAddress,
       abi,
@@ -58,7 +69,7 @@ const CrytoDev = ({}: Props) => {
   };
 
   const getProviderConnectedContract = async (): Promise<Contract> => {
-    const provider = await getSignerOrProvider(false);
+    const provider = await getProvider();
     const providerConnectedAccount = new Contract(
       crytoDevGoerliAddress,
       abi,
@@ -106,41 +117,68 @@ const CrytoDev = ({}: Props) => {
 
   const connectWallet = async () => {
     try {
-      await getSignerOrProvider();
+      await getSigner();
       setWalletConnected(true);
     } catch (e: unknown) {
       console.log(e);
     }
   };
 
-  const  startPreSale = async()=>{
-      try{
-        const nftContract = await getSignerConnectedContract()
-        const tx = await nftContract.startPresale()
-        setLoading(true)
-        await tx.wait()
-        setLoading(false)
-        await checkIfPresaleStarted();
-      }catch(e:unknown){
-        console.log(e)
-      }
-  }
+  const startPreSale = async () => {
+    try {
+      const nftContract = await getSignerConnectedContract();
+      const tx = await nftContract.startPresale();
+      setLoading(true);
+      await tx.wait();
+      setLoading(false);
+      await checkIfPresaleStarted();
+    } catch (e: unknown) {
+      console.log(e);
+    }
+  };
 
- 
-  const checkIfPresaleStarted =async()=>{
-   try{
-       const nftContract = await getProviderConnectedContract()
-       const _presaleStarted = await nftContract.presaleStarted()
-       if(!_presaleStarted){
-        await getOwner()
-       }
-       setPresaleStarted(_presaleStarted)
-       return _presaleStarted
-   }
-   catch(e:unknown){
-     console.log(e)
-   }
-  }
+  const checkIfPresaleStarted = async () => {
+    try {
+      const nftContract = await getProviderConnectedContract();
+      const _presaleStarted = await nftContract.presaleStarted();
+      if (!_presaleStarted) {
+        await getOwner();
+      }
+      setPresaleStarted(_presaleStarted);
+      return _presaleStarted;
+    } catch (e: unknown) {
+      console.log(e);
+    }
+  };
+
+  const checkIfPresaleHasEnded = async () => {
+    try {
+      const nftContract = await getProviderConnectedContract();
+      const _preSaleEnded = await nftContract.presaleEnded();
+      const hasEnded = _preSaleEnded.lt(Math.floor(Date.now() / 1000));
+      if (hasEnded) {
+        setPresaleEnded(true);
+      } else {
+        setPresaleEnded(false);
+      }
+      return hasEnded;
+    } catch (e: unknown) {
+      console.log(e);
+      return false;
+    }
+  };
+
+  const getOwner = async () => {
+    try {
+      const nftContract = await getProviderConnectedContract();
+      const owner = await nftContract.owner();
+
+      const signer = await getSigner();
+      const address = await signer.getAddress();
+    } catch (e: unknown) {
+      console.log(e);
+    }
+  };
 
   return <div>helfahhh</div>;
 };
