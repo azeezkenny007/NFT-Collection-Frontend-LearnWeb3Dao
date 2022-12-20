@@ -72,38 +72,46 @@ const CrytoDev = ({}: Props) => {
     try {
       const nftContract = await getSignerConnectedContract();
       // value is the amount to be specified for the transaction
-      // the amount is 0.01ETH which is == 10000000000000000wei 
+      // the amount is 0.01ETH which is == 10000000000000000wei
       const tx = await nftContract.presaleMint({
         value: utils.parseEther("0.01"),
       });
       // to load te button when the transaction is about to be performed
-      setLoading(true)
-      await tx.wait()
+      setLoading(true);
+      await tx.wait();
       // to stop the button from after the transaction response has been gotten
-      setLoading(false)
-      alert("you have successful minted a Crypto Dev Nft , welldone 🚀🚀")
+      setLoading(false);
+      alert("you have successful minted a Crypto Dev Nft , welldone 🚀🚀");
     } catch (e: unknown) {
       console.log(e);
     }
   };
 
-  const  publicMint = async() =>{
-      try{
-        const nftContract = await getSignerConnectedContract()
-        const tx= await nftContract.mint({
-         value: utils.parseEther("0.01"),
-       })
-       // to load te button when the transaction is about to be performed
-         setLoading(true)
-          await tx.wait()
+  const publicMint = async () => {
+    try {
+      const nftContract = await getSignerConnectedContract();
+      const tx = await nftContract.mint({
+        value: utils.parseEther("0.01"),
+      });
+      // to load te button when the transaction is about to be performed
+      setLoading(true);
+      await tx.wait();
       // to stop the button from after the transaction response has been gotten
-          setLoading(false)
-         alert("you have successful minted a Crypto Dev Nft , welldone 🚀🚀")
-      }
-      catch(e:unknown){
-        console.log(e)
-      }
-  }
+      setLoading(false);
+      alert("you have successful minted a Crypto Dev Nft , welldone 🚀🚀");
+    } catch (e: unknown) {
+      console.log(e);
+    }
+  };
+
+  const connectWallet = async () => {
+    try {
+      await getSignerOrProvider();
+      setWalletConnected(true);
+    } catch (e: unknown) {
+      console.log(e);
+    }
+  };
 
   return <div>helfahhh</div>;
 };
