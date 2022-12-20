@@ -70,6 +70,8 @@ const CrytoDev = ({}: Props) => {
   const presaleMint = async () => {
     try {
       const nftContract = await getSignerConnectedContract();
+      // value is the amount to be specified for the transaction
+      // the amount is 0.01ETH which is == 10000000000000000wei 
       const tx = await nftContract.presaleMint({
         value: utils.parseEther("0.01"),
       });
@@ -83,6 +85,8 @@ const CrytoDev = ({}: Props) => {
       console.log(e);
     }
   };
+
+  const 
 
   return <div>helfahhh</div>;
 };
