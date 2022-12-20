@@ -67,6 +67,7 @@ const CrytoDev = ({}: Props) => {
     return providerConnectedAccount;
   };
 
+  // This function can be performed only 5 minutes  owner of the contract  starts presale
   const presaleMint = async () => {
     try {
       const nftContract = await getSignerConnectedContract();
@@ -86,7 +87,23 @@ const CrytoDev = ({}: Props) => {
     }
   };
 
-  const 
+  const  publicMint = async() =>{
+      try{
+        const nftContract = await getSignerConnectedContract()
+        const tx= await nftContract.mint({
+         value: utils.parseEther("0.01"),
+       })
+       // to load te button when the transaction is about to be performed
+         setLoading(true)
+          await tx.wait()
+      // to stop the button from after the transaction response has been gotten
+          setLoading(false)
+         alert("you have successful minted a Crypto Dev Nft , welldone 🚀🚀")
+      }
+      catch(e:unknown){
+        console.log(e)
+      }
+  }
 
   return <div>helfahhh</div>;
 };
