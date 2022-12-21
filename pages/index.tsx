@@ -5,7 +5,7 @@ import CrytoDev from '../components/CrytoDev'
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className='bg-sky-900 h-screen text-white font-bold font-mono'>
         <CrytoDev/>
     </div>
   )
