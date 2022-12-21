@@ -18,3 +18,12 @@ This is the Dapp for the  CrytoDev smart Contract
 - The price for the NFT is 0.01ETH during and after presale
 - Ensure you use a testnet , __don't use your real funds__ 
     > Testnets to use e.g the Ethereum goerli test network  as it is the recommended testnet
+
+<div style="margin-top:20px"></div>
+
+
+
+## 📱  __Contact__
+- __Phone number - +2348134570701__
+* __Twitter - [ken_okha](https://twitter.com/Ken_okha "ken_okha")__
+* __BlockChain developer__
