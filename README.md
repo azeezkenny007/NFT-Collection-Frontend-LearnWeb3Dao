@@ -9,6 +9,8 @@ This is the Dapp for the  CrytoDev smart Contract
 
 ![mintedNft](public/nft%20minted.jpg)
 
+<div style="margin-top:20px"></div>
+
 __Requirements Needed To Interact With The Dapp__
 - Metamask wallet 
 
