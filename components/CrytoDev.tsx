@@ -236,21 +236,23 @@ const CrytoDev = ({}: Props) => {
     // If wallet is not connected, return a button which allows them to connect their wllet
     if (!walletConnected) {
       return (
-        <button onClick={connectWallet} className={styles.button}>
+        <button onClick={connectWallet} className={`${styles.button} shadow-lg `}>
           Connect your wallet
         </button>
       );
     }
 
+    
+
     // If we are currently waiting for something, return a loading button
     if (loading) {
-      return <button className={styles.button}>Loading...</button>;
+      return <button className={`${styles.button} shadow-lg `}>Loading...</button>;
     }
 
     // If connected user is the owner, and presale hasnt started yet, allow them to start the presale
     if (isOwner && !presaleStarted) {
       return (
-        <button className={styles.button} onClick={startPreSale}>
+        <button className={`${styles.button} shadow-lg `} onClick={startPreSale}>
           Start Presale!
         </button>
       );
