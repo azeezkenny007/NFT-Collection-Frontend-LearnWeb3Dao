@@ -1,27 +1,18 @@
-# Next.js + Tailwind CSS Example
+# ⚖ __CryptoDev Frontend__
+<div style="margin-top:20px"></div>
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This is the Dapp for the  CrytoDev smart Contract
+<div style="margin-top:20px"></div>
 
-## Deploy your own
+![mintedNft](public/nft%20minted.jpg)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+### __🚀 How To Interact With The Dapp__
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+<div style="margin-top:20px"></div>
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- The presale period lasts for only 5 minutes
+   > it is only available to the whiteListed address 
+- After that the normal minting of the Nft starts
+- The price for the Nft is 0.01ETH
+- Ensure you use a testnet , __don't use your real funds__ 
+    > Testnets to use e.g the Ethereum goerli test network  as it is the recommended testnet
