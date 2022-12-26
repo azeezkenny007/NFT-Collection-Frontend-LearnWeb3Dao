@@ -46,9 +46,6 @@ const CrytoDev = ({}: Props) => {
     return { provider: web3Provider, signer };
   };
 
-
-
- 
   const getSignerConnectedContractM = async (): Promise<Contract> => {
     const {provider,signer} = await getProviderAndSigner();
     const signerConnectedContract = new Contract(
