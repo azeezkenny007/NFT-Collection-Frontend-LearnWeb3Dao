@@ -59,18 +59,7 @@ const CrytoDev = ({}: Props) => {
     return signerConnectedContract;
   };
     
-
-  
-
-
-
-  
-  
-
-
   // To use the function, you can do the following:
-  
-
   const getProvider = async (): Promise<providers.Web3Provider> => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
