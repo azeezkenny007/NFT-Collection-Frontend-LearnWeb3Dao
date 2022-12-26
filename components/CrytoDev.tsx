@@ -30,6 +30,45 @@ const CrytoDev = ({}: Props) => {
   // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef<any>();
 
+  
+
+  const getProviderAndSigner = async (): Promise<{ provider: providers.Web3Provider, signer: providers.JsonRpcSigner }> => {
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+    const { chainId } = await web3Provider.getNetwork();
+  
+    if (chainId !== 5) {
+      alert("Please change network to goerli or polygon");
+      throw new Error("Please change network to goerli or polygon");
+    }
+  
+    const signer = web3Provider.getSigner();
+    return { provider: web3Provider, signer };
+  };
+
+
+
+ 
+  const getSignerConnectedContractM = async (): Promise<Contract> => {
+    const {provider,signer} = await getProviderAndSigner();
+    const signerConnectedContract = new Contract(
+      crytoDevGoerliAddress,
+      abi,
+      
+    );
+    return signerConnectedContract;
+  };
+    
+
+
+
+  
+  
+
+
+  // To use the function, you can do the following:
+  
+
   const getProvider = async (): Promise<providers.Web3Provider> => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
