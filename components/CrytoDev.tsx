@@ -54,11 +54,13 @@ const CrytoDev = ({}: Props) => {
     const signerConnectedContract = new Contract(
       crytoDevGoerliAddress,
       abi,
-      
+      signer
     );
     return signerConnectedContract;
   };
     
+
+  
 
 
 
