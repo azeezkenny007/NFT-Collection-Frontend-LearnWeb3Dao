@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import styles from "../styles/Home.module.css";
 import { crytoDevGoerliAddress, crytoDevPolygonAddress } from "../constants";
 import { abi } from "../constants/contractmetadata.json";
-
+import { Fade } from "react-awesome-reveal";
 
 type Props = {};
 
@@ -334,9 +334,9 @@ const CrytoDev = ({}: Props) => {
           {renderButton()}
         </div>
         <div>
-        
+          <Fade>
           <img className={styles.image} src="./image.svg" />
-         
+          </Fade>
         </div>
       </div>
     </div>
