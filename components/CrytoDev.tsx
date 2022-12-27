@@ -334,7 +334,9 @@ const CrytoDev = ({}: Props) => {
           {renderButton()}
         </div>
         <div>
+          <Fade>
           <img className={styles.image} src="./image.svg" />
+          </Fade>
         </div>
       </div>
     </div>
