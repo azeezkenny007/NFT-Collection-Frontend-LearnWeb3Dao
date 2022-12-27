@@ -63,8 +63,8 @@ const CrytoDev = ({}: Props) => {
     const { chainId } = await web3Provider.getNetwork();
 
     if (chainId !== 5) {
-      alert("Please change network to goerli or polygon");
-      throw new Error("Please change network to goerli or polygon");
+      alert("Please change network to goerli ");
+      throw new Error("Please change network to goerli ");
     }
 
     return web3Provider;
