@@ -9,7 +9,6 @@
     "ethers": "^5.7.2",
     "next": "latest",
     "react": "18.2.0",
-    "react-awesome-reveal": "^4.1.0",
     "react-dom": "18.2.0",
     "react-reveal": "^1.2.2",
     "web3modal": "^1.9.10"
